@@ -1,0 +1,31 @@
+{
+  "author" : "Wessley Roche",
+  "commands" : [
+    {
+      "script" : "script.cocoascript",
+      "handler" : "distributeLayersH",
+      "shortcut" : "",
+      "name" : "Distribute Horizontally",
+      "identifier" : "distributeLayersH"
+    },
+    {
+      "script" : "script.cocoascript",
+      "handler" : "distributeLayersV",
+      "shortcut" : "",
+      "name" : "Distribute Vertically",
+      "identifier" : "distributeLayersV"
+    }
+  ],
+  "menu": {
+    "items": [
+      "distributeLayersH",
+      "distributeLayersV"
+    ],
+	"isRoot" : false
+  },
+  "identifier" : "me.wessley.distributeLayers",
+  "version" : "1.0",
+  "description" : "Distributes layers evenly as opposed to .",
+  "authorEmail" : "wessley@mac.com",
+  "name" : "Distribute Layers"
+}

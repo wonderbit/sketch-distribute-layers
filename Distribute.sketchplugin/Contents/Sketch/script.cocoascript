@@ -1,0 +1,84 @@
+var ocdMode = false;
+
+var distributeLayersV = function(context) {
+	
+	// Get the selected layers into a new array
+	var layers = Array();
+	for(var i=0; i < context.selection.count(); i++) {
+		layers[i] = context.selection[i];
+	}
+	
+	// Sort the array by Y position
+	layers.sort(function(a,b){ return a.frame().y() - b.frame().y() });
+	
+	// Get the total width of the selection
+	var totalHeight = layers[layers.length-1].frame().y()+layers[layers.length-1].frame().height()-layers[0].frame().y();
+	
+	// Get the total width of the objects put together
+	var heights = 0;
+	for(var i=0; i < layers.length; i++) {
+		heights += layers[i].frame().height();
+	}
+	
+	// Calculate space
+	var spaces = totalHeight-heights;
+	var space = spaces/(layers.length-1);
+	
+	// Distribute
+	var y=0;
+	var left=layers[0].frame().y();
+	if(!ocdMode) {
+		for(var i=0; i < layers.length; i++) {
+			layers[i].frame().setY(y+left);
+			left = layers[i].frame().y() + layers[i].frame().height() + space;
+			layers[i].frame().setY(Math.floor(layers[i].frame().y()));
+		}
+	} else {
+		for(var i=0; i < layers.length; i++) {
+			layers[i].frame().setY(Math.floor(y+left));
+			left = layers[i].frame().y() + layers[i].frame().height() + space;
+		}
+	}
+}
+
+var distributeLayersH = function(context) {
+	
+	// Get the selected layers into a new array
+	var layers = Array();
+	for(var i=0; i < context.selection.count(); i++) {
+		layers[i] = context.selection[i];
+	}
+	
+	// Sort the array by X position
+	layers.sort(function(a,b){ return a.frame().x() - b.frame().x() });
+	
+	// Get the total width of the selection
+	var totalWidth = layers[layers.length-1].frame().x()+layers[layers.length-1].frame().width()-layers[0].frame().x();
+	
+	// Get the total width of the objects put together
+	var widths = 0;
+	for(var i=0; i < layers.length; i++) {
+		widths += layers[i].frame().width();
+	}
+	
+	// Calculate space
+	var spaces = totalWidth-widths;
+	var space = spaces/(layers.length-1);
+	
+	// Distribute
+	var x=0;
+	var left=layers[0].frame().x();
+	if(!ocdMode) {
+		for(var i=0; i < layers.length; i++) {
+			layers[i].frame().setX(x+left);
+			left = layers[i].frame().x() + layers[i].frame().width() + space;
+			layers[i].frame().setX(Math.floor(layers[i].frame().x()));
+		}
+	} else {
+		for(var i=0; i < layers.length; i++) {
+			layers[i].frame().setX(Math.floor(x+left));
+			left = layers[i].frame().x() + layers[i].frame().width() + space;
+		}
+	}
+}
+

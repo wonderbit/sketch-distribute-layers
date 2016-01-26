@@ -25,7 +25,7 @@
   },
   "identifier" : "me.wessley.distributeLayers",
   "version" : "1.0",
-  "description" : "Distributes layers evenly as opposed to .",
+  "description" : "A Sketch.app plug-in to properly distribute layers horizontally or vertically.",
   "authorEmail" : "wessley@mac.com",
   "name" : "Distribute Layers"
 }
